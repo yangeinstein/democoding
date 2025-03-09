@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="book-list">
+    <h2>图书列表</h2>
+    
+    {% if books %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>出版年份</th>
+                    <th>状态</th>
+                    <th>借阅人</th>
+                    <th>借阅日期</th>
+                    <th>预计归还日期</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.year }}</td>
+                    <td class="status {{ 'available' if book.available else 'borrowed' }}">
+                        {{ '可借阅' if book.available else '已借出' }}
+                    </td>
+                    <td>{{ book.borrower or '-' }}</td>
+                    <td>{{ book.borrow_date or '-' }}</td>
+                    <td>{{ book.return_date or '-' }}</td>
+                    <td class="actions">
+                        {% if book.available %}
+                            <a href="{{ url_for('borrow_book', book_id=book.id) }}" class="btn">借出</a>
+                        {% else %}
+                            <a href="{{ url_for('return_book', book_id=book.id) }}" class="btn return">归还</a>
+                        {% endif %}
+                        <a href="{{ url_for('delete_book', book_id=book.id) }}" class="btn delete" 
+                           onclick="return confirm('确定要删除《{{ book.title }}》吗？')">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-books">当前没有图书记录。<a href="{{ url_for('add_book') }}">添加一本新书</a></p>
+    {% endif %}
+</section>
+{% endblock %} 

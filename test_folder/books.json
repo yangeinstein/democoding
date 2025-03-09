@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "title": "三体",
+        "author": "刘慈欣",
+        "year": 2008,
+        "available": false,
+        "borrower": "yugang yang",
+        "borrow_date": "2025-03-09",
+        "return_date": "2025-04-08"
+    },
+    {
+        "id": 2,
+        "title": "活着",
+        "author": "余华",
+        "year": 1993,
+        "available": true
+    },
+    {
+        "id": 3,
+        "title": "百年孤独",
+        "author": "加西亚·马尔克斯",
+        "year": 1967,
+        "available": false
+    },
+    {
+        "id": 4,
+        "title": "1",
+        "author": "1",
+        "year": 1990,
+        "available": true,
+        "borrower": null,
+        "borrow_date": null,
+        "return_date": null
+    }
+]

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="welcome">
+    <h2>欢迎使用图书管理系统</h2>
+    <p>这是一个简单的图书管理系统，您可以：</p>
+    <ul>
+        <li><a href="{{ url_for('view_books') }}">查看所有图书</a></li>
+        <li><a href="{{ url_for('add_book') }}">添加新图书</a></li>
+    </ul>
+    <div class="system-info">
+        <h3>系统信息</h3>
+        <p>当前系统中共有 {{ books|length }} 本图书</p>
+        <p>可借阅图书: {{ books|selectattr('available', 'eq', true)|list|length }} 本</p>
+        <p>已借出图书: {{ books|selectattr('available', 'eq', false)|list|length }} 本</p>
+    </div>
+</section>
+{% endblock %} 
